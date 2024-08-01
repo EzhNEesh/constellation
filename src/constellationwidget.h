@@ -7,14 +7,21 @@
 
 class ConstellationWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
-    explicit ConstellationWidget(const QString &xmlFilePath, QWidget *parent);
+    explicit ConstellationWidget(const QString &_xmlFilePath, QWidget *parent);
+    void readXml();
     ~ConstellationWidget();
 
 private:
+    QString xmlFilePath;
     std::deque<QPoint> stars;
     std::vector<QPoint> markers;
     void paintEvent(QPaintEvent *event);
+
+signals:
+    void xmlFileNotExist(const QString &errorMessage);
 
 public slots:
     void updatePoints(const std::vector<QPoint> &newPoints);

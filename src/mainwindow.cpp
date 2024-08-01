@@ -29,7 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::openGraphWindow() {
-    ConstellationWindow *constellationWindow = new ConstellationWindow(filePathInput->text(), this);
+    ConstellationWindow *constellationWindow;
+    if (filePathInput->text().size() != 0) {
+        constellationWindow = new ConstellationWindow(this, filePathInput->text());
+    } else {
+        constellationWindow = new ConstellationWindow(this);
+    }
     constellationWindow->setAttribute(Qt::WA_DeleteOnClose);
     constellationWindow->show();
 }

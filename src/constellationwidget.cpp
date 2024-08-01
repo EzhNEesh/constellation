@@ -4,7 +4,11 @@
 
 #include "constellationwidget.h"
 
-ConstellationWidget::ConstellationWidget(const QString &xmlFilePath, QWidget *parent = nullptr) : QWidget(parent){
+ConstellationWidget::ConstellationWidget(const QString &_xmlFilePath, QWidget *parent = nullptr) : QWidget(parent){
+    xmlFilePath = _xmlFilePath;
+}
+
+void ConstellationWidget::readXml() {
     QFile file(xmlFilePath);
     if(file.open(QIODevice::ReadOnly)) {
         QXmlStreamReader sr(&file);
@@ -20,6 +24,8 @@ ConstellationWidget::ConstellationWidget(const QString &xmlFilePath, QWidget *pa
             qDebug() << "Error:" << sr.errorString();
         }
         file.close();
+    } else {
+        emit xmlFileNotExist("Xml file " + xmlFilePath + " does not exist");
     }
 }
 

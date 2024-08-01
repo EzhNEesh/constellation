@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QPoint>
+#include <QString>
 #include <string>
 
 class BinaryReader : public QObject
@@ -11,11 +12,12 @@ class BinaryReader : public QObject
 
 public:
     explicit BinaryReader(QObject *parent);
-    void readBinary(const std::string &filePath);
+    void readBinary(const QString &filePath);
     ~BinaryReader();
 
 signals:
     void paintPoints(const std::vector<QPoint> &newPoints);
+    void fileNotOpen(const QString &errorMessage);
 };
 
 #endif // BINARYREADER_H

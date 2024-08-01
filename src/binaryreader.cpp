@@ -5,8 +5,8 @@
 
 BinaryReader::BinaryReader(QObject *parent) : QObject(parent) {}
 
-void BinaryReader::readBinary(const std::string &filePath) {
-    std::ifstream file(filePath, std::ios::binary);
+void BinaryReader::readBinary(const QString &filePath) {
+    std::ifstream file(filePath.toStdString(), std::ios::binary);
     if (file.is_open()) {
         __INT16_TYPE__ x;
         __INT16_TYPE__ y;
@@ -21,6 +21,8 @@ void BinaryReader::readBinary(const std::string &filePath) {
         if (points.size() > 0) {
             emit paintPoints(points);
         }
+    } else {
+        emit fileNotOpen("Could not open binary file " + filePath);
     }
 }
 
