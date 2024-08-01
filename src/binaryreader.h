@@ -10,12 +10,12 @@ class BinaryReader : public QObject
     Q_OBJECT
 
 public:
-    explicit BinaryReader(QObject *);
-    void readBinary(const std::string &);
+    explicit BinaryReader(QObject *parent);
+    void readBinary(const std::string &filePath);
     ~BinaryReader();
 
 signals:
-    void paintPoints(const std::vector<QPoint> &);
+    void paintPoints(const std::vector<QPoint> &newPoints);
 };
 
 #endif // BINARYREADER_H

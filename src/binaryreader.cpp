@@ -16,7 +16,6 @@ void BinaryReader::readBinary(const std::string &filePath) {
             if (points.size() == 1000) {
                 emit paintPoints(points);
                 points.clear();
-                // std::this_thread::sleep_for(std::chrono::milliseconds(5000));
             }
         }
         if (points.size() > 0) {

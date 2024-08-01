@@ -12,7 +12,7 @@ class ConstellationWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit ConstellationWindow(QString xmlFilePath="32.xml", QWidget *parent = nullptr);
+    explicit ConstellationWindow(const QString &xmlFilePath="32.xml", QWidget *parent = nullptr);
     ~ConstellationWindow();
 };
 

@@ -32,7 +32,6 @@ void MainWindow::openGraphWindow() {
     ConstellationWindow *constellationWindow = new ConstellationWindow(this->filePathInput->text(), this);
     constellationWindow->setAttribute(Qt::WA_DeleteOnClose);
     constellationWindow->show();
-    // constellationWindow->deleteLater();
 }
 
 MainWindow::~MainWindow()

@@ -8,8 +8,7 @@
 class ConstellationWidget : public QWidget
 {
 public:
-    explicit ConstellationWidget(const QString &, QWidget *);
-    // void readMarkers();
+    explicit ConstellationWidget(const QString &xmlFilePath, QWidget *parent);
     ~ConstellationWidget();
 
 private:

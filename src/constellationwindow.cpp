@@ -3,7 +3,7 @@
 
 #include "constellationwindow.h"
 
-ConstellationWindow::ConstellationWindow(QString xmlFilePath, QWidget *parent) : QDialog(parent)
+ConstellationWindow::ConstellationWindow(const QString &xmlFilePath, QWidget *parent) : QDialog(parent)
 {
     this->setMinimumSize(300, 300);
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
