@@ -1,3 +1,6 @@
+#include <thread>
+#include <QVBoxLayout>
+
 #include "constellationwindow.h"
 
 ConstellationWindow::ConstellationWindow(QString xmlFilePath, QWidget *parent) : QDialog(parent)

@@ -6,7 +6,6 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include <QString>
 
 #include "constellationwindow.h"
 

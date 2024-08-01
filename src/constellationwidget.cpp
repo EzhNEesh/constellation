@@ -1,3 +1,7 @@
+#include <QPainter>
+#include <QFile>
+#include <QXmlStreamReader>
+
 #include "constellationwidget.h"
 
 ConstellationWidget::ConstellationWidget(const QString &xmlFilePath, QWidget *parent = nullptr) : QWidget(parent){

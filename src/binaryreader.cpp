@@ -1,3 +1,6 @@
+#include <fstream>
+#include <inttypes.h>
+
 #include "binaryreader.h"
 
 BinaryReader::BinaryReader(QObject *parent) : QObject(parent) {}

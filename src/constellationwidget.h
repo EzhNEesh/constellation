@@ -2,10 +2,6 @@
 #define CONSTELLATIONWIDGET_H
 
 #include <QWidget>
-#include <QPainter>
-#include <QFile>
-#include <QtXml>
-#include <QApplication>
 #include <QString>
 #include <deque>
 

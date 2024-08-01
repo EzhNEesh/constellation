@@ -3,9 +3,6 @@
 #include "constellationwidget.h"
 
 #include <QApplication>
-#include <QVBoxLayout>
-#include <QObject>
-#include <thread>
 
 
 int main(int argc, char *argv[])
@@ -16,5 +13,4 @@ int main(int argc, char *argv[])
 
     w.show();
     return a.exec();
-
 }

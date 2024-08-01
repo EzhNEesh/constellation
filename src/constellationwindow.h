@@ -2,7 +2,6 @@
 #define CONSTELLATIONWINDOW_H
 
 #include <QWidget>
-#include <QVBoxLayout>
 #include <QDialog>
 
 #include "constellationwidget.h"
