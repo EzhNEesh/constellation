@@ -22,6 +22,7 @@ private:
 
 signals:
     void xmlFileNotExist(const QString &errorMessage);
+    void xmlFileHasError(const QString &errorMessage);
 
 public slots:
     void updatePoints(const std::vector<QPoint> &newPoints);

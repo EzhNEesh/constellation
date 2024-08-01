@@ -22,7 +22,13 @@ ConstellationWindow::ConstellationWindow(QWidget *parent,
     QObject::connect(bReader, &BinaryReader::fileNotOpen,
                      this, &ConstellationWindow::showErrorMessageBox);
 
+    QObject::connect(bReader, &BinaryReader::invalidData,
+                     this, &ConstellationWindow::showErrorMessageBox);
+
     QObject::connect(constellationWidget, &ConstellationWidget::xmlFileNotExist,
+                     this, &ConstellationWindow::showErrorMessageBox);
+
+    QObject::connect(constellationWidget, &ConstellationWidget::xmlFileHasError,
                      this, &ConstellationWindow::showErrorMessageBox);
 
     constellationWidget->readXml();

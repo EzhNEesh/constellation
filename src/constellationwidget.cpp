@@ -1,5 +1,6 @@
 #include <QPainter>
 #include <QFile>
+#include <QRegularExpression>
 #include <QXmlStreamReader>
 
 #include "constellationwidget.h"
@@ -10,18 +11,26 @@ ConstellationWidget::ConstellationWidget(const QString &_xmlFilePath, QWidget *p
 
 void ConstellationWidget::readXml() {
     QFile file(xmlFilePath);
+    static QRegularExpression isFloat(QRegularExpression::anchoredPattern("-?\\d+\\.?\\d*"));
+
     if(file.open(QIODevice::ReadOnly)) {
         QXmlStreamReader sr(&file);
         do {
             sr.readNext();
             if (!sr.isEndElement() && sr.name().toString() == "Point") {
-                float X = sr.attributes().value('X').toFloat();
-                float Y = sr.attributes().value('Y').toFloat();
+                QStringView Xstring = sr.attributes().value('X');
+                QStringView Ystring = sr.attributes().value('Y');
+                if (!isFloat.match(Xstring).hasMatch() || !isFloat.match(Ystring).hasMatch()) {
+                    emit xmlFileHasError("Not float point data in xml");
+                    break;
+                }
+                float X = Xstring.toFloat();
+                float Y = Ystring.toFloat();
                 markers.push_back(QPoint(X, Y));
             }
         } while (!sr.atEnd());
         if (sr.hasError()) {
-            qDebug() << "Error:" << sr.errorString();
+            emit xmlFileHasError("Invalid data in xml file");
         }
         file.close();
     } else {

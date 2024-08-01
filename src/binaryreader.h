@@ -18,6 +18,7 @@ public:
 signals:
     void paintPoints(const std::vector<QPoint> &newPoints);
     void fileNotOpen(const QString &errorMessage);
+    void invalidData(const QString &errorMessage);
 };
 
 #endif // BINARYREADER_H
