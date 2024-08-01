@@ -13,7 +13,7 @@ ConstellationWidget::ConstellationWidget(const QString &xmlFilePath, QWidget *pa
             if (!sr.isEndElement() && sr.name().toString() == "Point") {
                 float X = sr.attributes().value('X').toFloat();
                 float Y = sr.attributes().value('Y').toFloat();
-                this->markers.push_back(QPoint(X, Y));
+                markers.push_back(QPoint(X, Y));
             }
         } while (!sr.atEnd());
         if (sr.hasError()) {
@@ -25,29 +25,29 @@ ConstellationWidget::ConstellationWidget(const QString &xmlFilePath, QWidget *pa
 
 void ConstellationWidget::updatePoints(const std::vector<QPoint> &newPoints) {
     for (auto &newStar : newPoints) {
-        this->stars.push_back(newStar);
-        if (this->stars.size() > 16000) {
-            this->stars.pop_front();
+        stars.push_back(newStar);
+        if (stars.size() > 16000) {
+            stars.pop_front();
         }
     }
-    this->update();
+    update();
 }
 
 void ConstellationWidget::paintEvent(QPaintEvent *event) {
-    int cur_height = this->height();
-    int cur_width = this->width();
-    QWidget* parentNode = this->parentWidget();
+    int cur_height = height();
+    int cur_width = width();
+    QWidget* parentNode = parentWidget();
 
-    this->resize(parentNode->width(), parentNode->height());
+    resize(parentNode->width(), parentNode->height());
 
     QPainter painter;
     painter.begin(this);
-    for (auto& star : this->stars) {
+    for (auto& star : stars) {
         painter.drawPoint((star.x() / 300. + 0.5) * float(cur_width), (star.y() / 300. + 0.5) * float(cur_height));
     }
 
     painter.setPen("red");
-    for (auto& marker : this->markers) {
+    for (auto& marker : markers) {
         painter.drawLine((marker.x() / 300. + 0.5) * float(cur_width) + 1,
                          (marker.y() / 300. + 0.5) * float(cur_height) + 1,
                          (marker.x() / 300. + 0.5) * float(cur_width) - 1,
