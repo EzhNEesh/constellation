@@ -49,25 +49,22 @@ void ConstellationWidget::updatePoints(const std::vector<QPoint> &newPoints) {
 }
 
 void ConstellationWidget::paintEvent(QPaintEvent *event) {
-    int cur_height = height();
-    int cur_width = width();
-
     QPainter painter;
     painter.begin(this);
     for (auto& star : stars) {
-        painter.drawPoint((star.x() / 300. + 0.5) * float(cur_width), (star.y() / 300. + 0.5) * float(cur_height));
+        painter.drawPoint((star.x() / 300. + 0.5) * float(width()), (star.y() / 300. + 0.5) * float(height()));
     }
 
     painter.setPen("red");
     for (auto& marker : markers) {
-        painter.drawLine((marker.x() / 300. + 0.5) * float(cur_width) + 1,
-                         (marker.y() / 300. + 0.5) * float(cur_height) + 1,
-                         (marker.x() / 300. + 0.5) * float(cur_width) - 1,
-                         (marker.y() / 300. + 0.5) * float(cur_height) - 1);
-        painter.drawLine((marker.x() / 300. + 0.5) * float(cur_width) + 1,
-                         (marker.y() / 300. + 0.5) * float(cur_height) - 1,
-                         (marker.x() / 300. + 0.5) * float(cur_width) - 1,
-                         (marker.y() / 300. + 0.5) * float(cur_height) + 1);
+        painter.drawLine((marker.x() / 300. + 0.5) * float(width()) + 1,
+                         (marker.y() / 300. + 0.5) * float(height()) + 1,
+                         (marker.x() / 300. + 0.5) * float(width()) - 1,
+                         (marker.y() / 300. + 0.5) * float(height()) - 1);
+        painter.drawLine((marker.x() / 300. + 0.5) * float(width()) + 1,
+                         (marker.y() / 300. + 0.5) * float(height()) - 1,
+                         (marker.x() / 300. + 0.5) * float(width()) - 1,
+                         (marker.y() / 300. + 0.5) * float(height()) + 1);
     }
     painter.end();
 }
