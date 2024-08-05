@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QDialog>
 #include <QString>
+#include <QVBoxLayout>
 
 #include "constellationwidget.h"
 #include "binaryreader.h"
@@ -17,6 +18,11 @@ public:
                                  const QString &xmlFilePath="32.xml",
                                  const QString &binaryPath="iq_qam32.bin");
     ~ConstellationWindow();
+
+private:
+    ConstellationWidget *constellationWidget;
+    QVBoxLayout *mainLayout;
+    BinaryReader *bReader;
 
 private slots:
     void showErrorMessageBox(const QString &errorMessage);

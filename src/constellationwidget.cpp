@@ -51,9 +51,6 @@ void ConstellationWidget::updatePoints(const std::vector<QPoint> &newPoints) {
 void ConstellationWidget::paintEvent(QPaintEvent *event) {
     int cur_height = height();
     int cur_width = width();
-    QWidget* parentNode = parentWidget();
-
-    resize(parentNode->width(), parentNode->height());
 
     QPainter painter;
     painter.begin(this);

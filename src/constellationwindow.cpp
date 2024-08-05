@@ -10,11 +10,11 @@ ConstellationWindow::ConstellationWindow(QWidget *parent,
     : QDialog(parent)
 {
     setMinimumSize(300, 300);
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout = new QVBoxLayout(this);
     setLayout(mainLayout);
 
-    ConstellationWidget *constellationWidget = new ConstellationWidget(xmlFilePath, this);
-    BinaryReader *bReader = new BinaryReader(this);
+    constellationWidget = new ConstellationWidget(xmlFilePath, this);
+    bReader = new BinaryReader(this);
 
     QObject::connect(bReader, &BinaryReader::paintPoints,
                      constellationWidget, &ConstellationWidget::updatePoints);
@@ -33,7 +33,7 @@ ConstellationWindow::ConstellationWindow(QWidget *parent,
 
     constellationWidget->readXml();
     mainLayout->addWidget(constellationWidget);
-    std::thread readerThread([bReader, binaryPath](){ bReader->readBinary(binaryPath); });
+    std::thread readerThread([this, binaryPath](){ bReader->readBinary(binaryPath); });
     readerThread.detach();
 }
 
@@ -44,7 +44,4 @@ void ConstellationWindow::showErrorMessageBox(const QString &errorMessage) {
     errorMessageBox->show();
 }
 
-ConstellationWindow::~ConstellationWindow()
-{
-    // delete ui;
-}
+ConstellationWindow::~ConstellationWindow() {}
